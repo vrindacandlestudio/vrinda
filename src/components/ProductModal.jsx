@@ -9,10 +9,13 @@ export default function ProductModal({ product, onClose, onAddToCart, isAdded })
   const [quantity, setQuantity] = useState(1);
   const [selectedFragrance, setSelectedFragrance] = useState(FRAGRANCES[2].name); // Default Rose
   const [selectedColor, setSelectedColor] = useState(AVAILABLE_COLORS[0].name); // Default Blush Pink
+  const [activeImage, setActiveImage] = useState(product?.image ? product.image.replace(/^\.\//, '') : '');
 
   if (!product) return null;
 
-  const imageSrc = product.image ? product.image.replace(/^\.\//, '') : '';
+  const imageList = product.images 
+    ? product.images 
+    : (product.altImage ? [product.image, product.altImage] : [product.image]);
 
   const handleWhatsAppOrder = () => {
     const message = `Hi Vrinda! I'm interested in ordering:
@@ -46,14 +49,35 @@ Could you please share availability and delivery details? Thank you!`;
         </button>
 
         {/* Left Section: Image Showcase */}
-        <div className="md:w-1/2 bg-[#FAF7F2] relative min-h-[300px] md:min-h-full flex items-center justify-center p-4 sm:p-6">
+        <div className="md:w-1/2 bg-[#FAF7F2] relative min-h-[320px] md:min-h-full flex flex-col items-center justify-center p-4 sm:p-6">
           <img
-            src={imageSrc}
+            src={activeImage}
             alt={product.name}
-            className="w-full h-full max-h-[480px] object-cover rounded-2xl shadow-md border border-[#EBE4DA]"
+            className="w-full h-full max-h-[420px] object-cover rounded-2xl shadow-md border border-[#EBE4DA] transition-all duration-300"
           />
+
+          {imageList.length > 1 && (
+            <div className="flex items-center justify-center gap-2 mt-3 z-10">
+              {imageList.map((img, idx) => {
+                const src = img.replace(/^\.\//, '');
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveImage(src)}
+                    className={`w-12 h-12 rounded-xl overflow-hidden border-2 transition-all ${
+                      activeImage === src
+                        ? 'border-[#C5A059] scale-105 shadow-sm'
+                        : 'border-[#EBE4DA] opacity-70 hover:opacity-100'
+                    }`}
+                  >
+                    <img src={src} alt={`${product.name} thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
+                  </button>
+                );
+              })}
+            </div>
+          )}
           
-          <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between pointer-events-none">
+          <div className="absolute top-6 left-6 right-6 flex items-center justify-between pointer-events-none">
             <span className="badge-rose shadow-md text-xs py-1 px-3">
               {product.scentFamily}
             </span>
