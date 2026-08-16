@@ -9,12 +9,16 @@ export default function ProductCard({ product, onQuickView, onAddToCart, isAdded
       <div className="relative">
         <div className="absolute top-3 left-3 right-3 z-10 flex items-center justify-between pointer-events-none">
           <div className="flex flex-col gap-1">
-            {product.isCatalogueOfficial && (
+            {product.isNew && (
+              <span className="bg-[#9E4770] text-white text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full shadow-md flex items-center gap-1">
+                <Sparkles className="w-3 h-3" /> New Arrival
+              </span>
+            )}
+            {product.isCatalogueOfficial && !product.isNew && (
               <span className="bg-[#C5A059] text-white text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full shadow-md flex items-center gap-1">
                 <Sparkles className="w-3 h-3" /> Catalogue Pick
               </span>
             )}
-            {/* Burn time badge removed per request */}
           </div>
 
           <span className="bg-white/95 backdrop-blur-md text-[#2C2A29] text-[11px] font-bold px-2.5 py-1 rounded-full border border-[#EBE4DA] shadow-sm">
@@ -28,8 +32,18 @@ export default function ProductCard({ product, onQuickView, onAddToCart, isAdded
             src={product.image}
             alt={product.name}
             loading="lazy"
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${
+              product.altImage ? 'group-hover:opacity-0' : ''
+            }`}
           />
+          {product.altImage && (
+            <img
+              src={product.altImage}
+              alt={`${product.name} alternate view`}
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover transition-all duration-500 scale-105 opacity-0 group-hover:opacity-100"
+            />
+          )}
           
           {/* Hover Quick View Overlay Button */}
           <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">

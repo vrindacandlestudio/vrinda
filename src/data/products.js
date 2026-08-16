@@ -148,6 +148,38 @@ export const PRODUCTS = [
       "Keep wax pool clean of match heads or wick debris.",
       "Dust gently with a soft dry brush when used for decor."
     ]
+  },
+  {
+    id: "vrinda-cat-05",
+    name: "The Floral Muse",
+    category: "Tote & Box Arrangements",
+    price: 799,
+    originalPrice: 899,
+    image: "./images/the-floral-muse.jpeg",
+    altImage: "./images/the-floral-muse-alt.jpeg",
+    images: ["./images/the-floral-muse.jpeg", "./images/the-floral-muse-alt.jpeg"],
+    scentFamily: "Classic Floral",
+    defaultScent: "Rose",
+    dimensions: "22cm H × 16cm W",
+    rating: 5.0,
+    reviewsCount: 36,
+    isCatalogueOfficial: true,
+    isNew: true,
+    isBestseller: true,
+    fragrancePyramid: {
+      top: "Golden Sunlit Bloom & Morning Dew",
+      heart: "Sculpted Rose Petals & Fresh Jasmine",
+      base: "Sheer Velvet Musk & Warm Vanilla"
+    },
+    materials: "Handcrafted Botanical Soy & Beeswax Blend, Sculpted Yellow & Ivory Rose Blooms, Pearl Netting Tulle, Pink Arched Handle Gift Tote Box",
+    vessel: "Pink Arched Handle Gift Tote with Pearl Sheer Netting",
+    occasions: ["Gifting", "Celebrations", "Everyday Spaces", "Special Occasions"],
+    description: "The Floral Muse is a handcrafted floral candle arrangement, thoughtfully designed to bring the charm of fresh blooms with the warmth of candlelight. A graceful statement piece for gifting, celebrations, or elevating everyday spaces.",
+    careTips: [
+      "Place upright on a stable, heat-safe surface before lighting wicks.",
+      "Trim wicks to 5mm before every burn session.",
+      "Keep away from direct sunlight and heat drafts when displayed as a decorative centerpiece."
+    ]
   }
 ];
 
@@ -155,7 +187,8 @@ export const CATEGORIES = [
   "All",
   "Candle Bouquets",
   "Individual Blooms",
-  "Vase & Jar Arrangements"
+  "Vase & Jar Arrangements",
+  "Tote & Box Arrangements"
 ];
 
 export const SCENT_FAMILIES = [
@@ -163,5 +196,7 @@ export const SCENT_FAMILIES = [
   "Classic Floral",
   "Warm Sweet",
   "Romantic Musk",
-  "Fresh Floral"
+  "Fresh Floral",
+  "Exotic Spice"
 ];
+
